@@ -151,13 +151,13 @@ function dhtmlXCalendarObject(inps, skin) {
 		// show month selector
 		if (t.className && t.className == "dhtmlxcalendar_month_label_month") {
 			e.cancelBubble = true;
-			that._showSelector("month", Math.round(t.offsetLeft+t.offsetWidth/2), t.offsetTop+t.offsetHeight+2, "selector_month", true);
+			that._showSelector("month", Math.round(t.offsetLeft+t.offsetWidth/2)+15, t.offsetTop+t.offsetHeight+2, "selector_month", true);
 			return;
 		}
 		// show year selector
 		if (t.className && t.className == "dhtmlxcalendar_month_label_year") {
 			e.cancelBubble = true;
-			that._showSelector("year", Math.round(t.offsetLeft+t.offsetWidth/2), t.offsetTop+t.offsetHeight+2, "selector_year", true);
+			that._showSelector("year", Math.round(t.offsetLeft+t.offsetWidth/2)+12, t.offsetTop+t.offsetHeight+2, "selector_year", true);
 			return;
 		}
 		// hide selector if it visible
@@ -533,7 +533,7 @@ function dhtmlXCalendarObject(inps, skin) {
 					this.contDates.childNodes[q].childNodes[w]._w = w;
 					this.contDates.childNodes[q].childNodes[w]._css_month = (d2.getMonth()==mx);
 					this.contDates.childNodes[q].childNodes[w]._css_date = (!this._nullDate&&time==dx);
-					this.contDates.childNodes[q].childNodes[w]._css_weekend = (ws>=6);
+					this.contDates.childNodes[q].childNodes[w]._css_weekend = (ws>=7);
 					this.contDates.childNodes[q].childNodes[w]._css_dis = this._isOutOfRange(time);
 					this.contDates.childNodes[q].childNodes[w]._css_holiday = (this._holidays[time] == true);
 					
@@ -733,10 +733,12 @@ function dhtmlXCalendarObject(inps, skin) {
 				ul.className = "dhtmlxcalendar_selector_line";
 				this.ysCont.appendChild(ul);
 				for (var w=0; w<3; w++) {
-					var li = document.createElement("LI");
-					li.className = "dhtmlxcalendar_selector_cell";
-					li._cell = true;
-					ul.appendChild(li);
+					if ( !(q==3 && (w==1 || w==2)) ) {
+						var li = document.createElement("LI");
+						li.className = "dhtmlxcalendar_selector_cell";
+						li._cell = true;
+						ul.appendChild(li);
+					}
 				}
 			}
 			
@@ -1131,13 +1133,16 @@ function dhtmlXCalendarObject(inps, skin) {
 			delete this._ysCells[a];
 		}
 		//
-		var i = 12*Math.floor(d.getFullYear()/12);
+		var i = 10*Math.floor(d.getFullYear()/10);
 		for (var q=0; q<4; q++) {
 			for (var w=0; w<3; w++) {
-				this.ysCont.childNodes[q].childNodes[w].innerHTML = i;
-				this.ysCont.childNodes[q].childNodes[w]._year = i;
-				this.ysCont.childNodes[q].childNodes[w].className = "dhtmlxcalendar_selector_cell";
-				this._ysCells[i++] = this.ysCont.childNodes[q].childNodes[w];
+				if ( !(q==3 && (w==1 || w==2)) )
+				{
+					this.ysCont.childNodes[q].childNodes[w].innerHTML = i;
+					this.ysCont.childNodes[q].childNodes[w]._year = i;
+					this.ysCont.childNodes[q].childNodes[w].className = "dhtmlxcalendar_selector_cell";
+					this._ysCells[i++] = this.ysCont.childNodes[q].childNodes[w];
+				}
 			}
 		}
 		this._updateActiveYear();
