@@ -120,7 +120,17 @@ Copyright UAB Dinamenta http://www.dhtmlx.com
 .dhtmlxcalendar_material div.dhtmlxcalendar_month_cont ul.dhtmlxcalendar_line li.dhtmlxcalendar_cell.dhtmlxcalendar_month_hdr span.dhtmlxcalendar_month_label_year {
 	position: relative;
 	font: inherit;
+	padding: 3px 8px;
 }
+
+.dhtmlxcalendar_material div.dhtmlxcalendar_month_cont ul.dhtmlxcalendar_line li.dhtmlxcalendar_cell.dhtmlxcalendar_month_hdr span.dhtmlxcalendar_month_label_month:hover,
+.dhtmlxcalendar_material div.dhtmlxcalendar_month_cont ul.dhtmlxcalendar_line li.dhtmlxcalendar_cell.dhtmlxcalendar_month_hdr span.dhtmlxcalendar_month_label_year:hover {
+	cursor: pointer;
+	background: #cac3c3;
+	border-radius: 10px;
+	padding: 3px 8px;
+}
+	
 .dhtmlxcalendar_material div.dhtmlxcalendar_days_cont {
 	position: relative;
 	display: block;
@@ -476,7 +486,7 @@ Copyright UAB Dinamenta http://www.dhtmlx.com
 }
 .dhtmlxcalendar_material div.dhtmlxcalendar_selector_obj table.dhtmlxcalendar_selector_table td.dhtmlxcalendar_selector_cell_left,
 .dhtmlxcalendar_material div.dhtmlxcalendar_selector_obj table.dhtmlxcalendar_selector_table td.dhtmlxcalendar_selector_cell_right {
-	width: 24px;
+	width: 15px;
 	text-align: center;
 	border-color: #dfdfdf;
 	border-style: solid;
@@ -551,7 +561,7 @@ Copyright UAB Dinamenta http://www.dhtmlx.com
 	border-bottom: 0px solid white;
 }
 .dhtmlxcalendar_material div.dhtmlxcalendar_selector_obj table.dhtmlxcalendar_selector_table td.dhtmlxcalendar_selector_cell_middle ul.dhtmlxcalendar_selector_line li.dhtmlxcalendar_selector_cell {
-	width: 50px;
+	width: 45px;
 	height: 28px;
 	line-height: 28px;
 }
