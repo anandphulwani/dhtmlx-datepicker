@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Attach to input</title>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxcalendar.css"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+	<script src="../../../codebase/dhtmlxcalendar.js"></script>
+	<style>
+		#calendar {
+			border: 1px solid #dfdfdf;
+			font-family: Roboto, Arial, Helvetica;
+			font-size: 14px;
+			color: #404040;
+		}
+	</style>
+	<script>
+		function doOnLoad() {
+		}
+		(function( $ ) {
+			var myCalendar;
+			$(function() {
+				myCalendar = new dhtmlXCalendarObject({input: "cal_1", timePicker: false});
+				myCalendar.setDateFormat("%d-%m-%Y");
+				myCalendar.hideTime();
+				myCalendar.setDate("28-12-2011");
+				// myCalendar.showToday();
+				myCalendar.setInsensitiveRange(null,"04-05-2012");
+				var today = new Date();
+				myCalendar.setInsensitiveRange(String(today.getDate()).padStart(2, '0')+"-"+String(today.getMonth() + 1).padStart(2, '0')+"-"+today.getFullYear(),null);
+				$('#cal_1').mask('00-00-0000');
+			});
+		})(jQuery);
+	</script>
+</head>
+<body onload="doOnLoad();">
+	<div style="position:relative;height:350px;">
+		<input type="text" />
+		<input type="text" id="cal_1" placeholder="DD - MM - YYYY" />
+		<input type="text" />
+	</div>
+</body>
+</html>
