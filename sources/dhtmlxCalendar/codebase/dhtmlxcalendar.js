@@ -1358,6 +1358,7 @@ function dhtmlXCalendarObject(inps, skin) {
 	
 	/* show/hide calendar */
 	
+	this._isShowFnCalled = false;
 	// public show/hide
 	
 	this.show = function(id) {
@@ -1395,6 +1396,10 @@ function dhtmlXCalendarObject(inps, skin) {
 		return this._isVisible();
 	}
 	
+	this.showOnClick = function(id) {
+		this._isShowFnCalled = true;
+		this.show(id)
+	}
 	
 	// private show/hide
 	this._activeInp = null;
@@ -1864,7 +1869,13 @@ function dhtmlXCalendarObject(inps, skin) {
 			return;
 		}
 		if (!t._dhtmlxcalendar_uid || !that.i[t._dhtmlxcalendar_uid]) { // !that.i[t._dhtmlxcalendar_uid] means alien input, for several calendar instances
-			if (that._isSelectorVisible()) that._hideSelector(); else if (!that._hasParent && that._isVisible()) that._hide();
+			if (that._isSelectorVisible()) that._hideSelector(); else if (!that._hasParent && that._isVisible()) {
+				if (that._isShowFnCalled) {
+					that._isShowFnCalled = false;
+					return;
+				}
+				that._hide();
+			}
 		}
 	}
 	
